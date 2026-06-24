@@ -1,0 +1,6 @@
+@RaplayService_HostAddress = http://localhost:5235
+
+GET {{RaplayService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
