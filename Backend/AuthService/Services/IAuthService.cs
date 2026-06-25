@@ -1,10 +1,9 @@
 using AuthService.DTO.Auth;
 
-namespace AuthService.Services
+namespace AuthService.Services;
+
+public interface IAuthService
 {
-    public interface IAuthService
-    {
-        Task<LoginDto> LoginAsync(LoginDto loginDto);
-        Task<RegisterDto> RegisterAsync(RegisterDto registerDto);
-    }
+    Task<LoginResponse> LoginAsync(LoginDto loginDto);
+    Task<RegisterResponse> RegisterAsync(RegisterDto registerDto);
 }

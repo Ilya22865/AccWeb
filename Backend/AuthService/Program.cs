@@ -1,6 +1,16 @@
 using System.Text.Json.Serialization;
+using AuthService.Data;
+using AuthService.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
+builder.Services.AddScoped<IAuthService, AuthService.Services.AuthService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

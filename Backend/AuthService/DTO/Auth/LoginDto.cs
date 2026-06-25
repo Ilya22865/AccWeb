@@ -1,8 +1,22 @@
+using AuthService.Models;
+using System.ComponentModel.DataAnnotations;
 namespace AuthService.DTO.Auth
 {
+    public record LoginResponse(
+        string Token,
+        string RefreshToken,
+        int UserId,
+        string FullName,
+        UserRole Role
+    );
     public class LoginDto
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = null!;
+
+        [Required]
+        [MinLength(8)]
+        public string Password { get; set; } = null!;
     }
 }

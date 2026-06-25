@@ -1,6 +1,13 @@
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+using RaceDirectorService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
