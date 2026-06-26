@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using AuthService.Data;
 using AuthService.DTO.Auth;
 using AuthService.Models;
@@ -25,10 +26,25 @@ public class AuthService : IAuthService
             throw new Exception("Invalid email or password");
 
         var token = await _tokenGenerator.GenerateTokenAsync(user.Id, user.Email, user.FullName, user.Role);
+        string refreshTokenStr = GenerateRefreshToken();
+        
+        var refreshToken = new RefreshToken
+        {
+            Token = refreshTokenStr,
+            UserId = user.Id,
+            Expires = DateTime.UtcNow.AddDays(7),
+            CreatedAt = DateTime.UtcNow,
+        };
 
-        return new LoginResponse(token, "", user.Id, user.FullName, user.Role);
+        _context.RefreshTokens.Add(refreshToken);
+        await _context.SaveChangesAsync();
+
+        return new LoginResponse(token, refreshTokenStr, user.Id, user.FullName, user.Role);
     }
-
+    private static string GenerateRefreshToken()
+    {
+        return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
+    }
     public async Task<RegisterResponse> RegisterAsync(RegisterDto registerDto)
     {
         if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
