@@ -9,22 +9,26 @@ namespace AuthService.Services;
 public class AuthService : IAuthService
 {
     private readonly AppDbContext _context;
+    private readonly IConfiguration _configuration;
     private readonly ITokenGenerator _tokenGenerator;
+    private readonly IEmailValidator _emailValidator;
 
-    public AuthService(AppDbContext context, ITokenGenerator tokenGenerator)
+    public AuthService(AppDbContext context, IConfiguration configuration, ITokenGenerator tokenGenerator, IEmailValidator emailValidator)
     {
         _context = context;
+        _configuration = configuration;
         _tokenGenerator = tokenGenerator;
+        _emailValidator = emailValidator;
     }
 
     public async Task<LoginResponse> LoginAsync(LoginDto loginDto)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email)
-            ?? throw new Exception("Invalid email or password");
-
+            ?? throw new Exception("User not found");
+        
         if (!BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash))
-            throw new Exception("Invalid email or password");
-
+            throw new Exception("Invalid password");
+        
         var token = await _tokenGenerator.GenerateTokenAsync(user.Id, user.Email, user.FullName, user.Role);
         string refreshTokenStr = GenerateRefreshToken();
         
@@ -32,7 +36,7 @@ public class AuthService : IAuthService
         {
             Token = refreshTokenStr,
             UserId = user.Id,
-            Expires = DateTime.UtcNow.AddDays(7),
+            Expires = DateTime.UtcNow.AddDays(30),
             CreatedAt = DateTime.UtcNow,
         };
 
@@ -50,6 +54,11 @@ public class AuthService : IAuthService
         if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
             throw new Exception("User already exists");
 
+        string? apiKey = _configuration["Hunter:ApiKey"];
+        bool isValidEmail = await _emailValidator.IsValid(registerDto.Email, apiKey ?? "");
+        if(!isValidEmail)
+            throw new Exception("Invalid email");
+        
         var user = new User
         {
             Email = registerDto.Email,
