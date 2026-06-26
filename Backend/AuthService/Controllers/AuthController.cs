@@ -15,6 +15,17 @@ namespace AuthService.Controllers
         {
             _authService = authService;
         }
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+        {
+            try {
+                var result = await _authService.RefreshAsync(request);
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)

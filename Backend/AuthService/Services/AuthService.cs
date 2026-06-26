@@ -110,7 +110,9 @@ public class AuthService : IAuthService
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
-
+        if(user.Id == 1) user.Role = UserRole.Admin;
+        await _context.SaveChangesAsync();
+        
         var token = await _tokenGenerator.GenerateTokenAsync(user.Id, user.Email, user.FullName, user.Role);
 
         return new RegisterResponse(token, user.Id, user.FullName, user.Role);
