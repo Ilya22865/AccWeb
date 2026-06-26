@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("7968f59b-e62c-4634-9d0f-b266df4a0e16")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0eae96194b10a14a3eed781d83237d8e1ce5436")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5c023910421904ba193e644a590b51d7238bc95")]
 [assembly: System.Reflection.AssemblyProductAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

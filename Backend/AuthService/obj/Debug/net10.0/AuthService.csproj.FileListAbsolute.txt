@@ -123,3 +123,12 @@
 /home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/BCrypt-Net-Next.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.Abstractions.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
+/home/user/AssettoCorsaWeb/Backend/AuthService/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll

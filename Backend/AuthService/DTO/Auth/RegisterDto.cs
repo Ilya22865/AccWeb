@@ -3,6 +3,7 @@ using AuthService.Models;
 namespace AuthService.DTO.Auth
 {
     public record RegisterResponse(
+        string token,
         int UserId,
         string FullName,
         UserRole Role

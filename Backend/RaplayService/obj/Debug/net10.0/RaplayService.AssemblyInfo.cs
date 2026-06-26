@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c0bb3f5c-9e17-4fda-8201-e85748a20dd5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("RaplayService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0eae96194b10a14a3eed781d83237d8e1ce5436")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5c023910421904ba193e644a590b51d7238bc95")]
 [assembly: System.Reflection.AssemblyProductAttribute("RaplayService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RaplayService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
