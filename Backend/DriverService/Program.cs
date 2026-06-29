@@ -1,6 +1,8 @@
 using System.Text.Json.Serialization;
 using DriverService.Data;
+using DriverService.Services;
 using Microsoft.EntityFrameworkCore;
+using Shared.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
+builder.Services.AddSingleton<RabbitMqConnection>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<RabbitMqConnection>());
+builder.Services.AddHostedService<UserRegisteredConsumer>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

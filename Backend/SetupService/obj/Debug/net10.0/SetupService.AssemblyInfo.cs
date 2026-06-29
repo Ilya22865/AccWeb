@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5c023910421904ba193e644a590b51d7238bc95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9af238269b5e0faae9d53d5f9e662021a4524669")]
 [assembly: System.Reflection.AssemblyProductAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SetupService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

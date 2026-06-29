@@ -12,13 +12,15 @@ public class AuthService : IAuthService
     private readonly IConfiguration _configuration;
     private readonly ITokenGenerator _tokenGenerator;
     private readonly IEmailValidator _emailValidator;
+    private readonly IEventPublisher _eventPublisher;
 
-    public AuthService(AppDbContext context, IConfiguration configuration, ITokenGenerator tokenGenerator, IEmailValidator emailValidator)
+    public AuthService(AppDbContext context, IConfiguration configuration, ITokenGenerator tokenGenerator, IEmailValidator emailValidator, IEventPublisher eventPublisher)
     {
         _context = context;
         _configuration = configuration;
         _tokenGenerator = tokenGenerator;
         _emailValidator = emailValidator;
+        _eventPublisher = eventPublisher;
     }
     private async Task<RefreshToken> ValidateRefreshTokenAsync(string refreshTokenStr)
     {
@@ -112,7 +114,7 @@ public class AuthService : IAuthService
         await _context.SaveChangesAsync();
         if(user.Id == 1) user.Role = UserRole.Admin;
         await _context.SaveChangesAsync();
-        
+
         var token = await _tokenGenerator.GenerateTokenAsync(user.Id, user.Email, user.FullName, user.Role);
 
         return new RegisterResponse(token, user.Id, user.FullName, user.Role);

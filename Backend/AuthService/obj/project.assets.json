@@ -664,6 +664,19 @@
           }
         }
       },
+      "RabbitMQ.Client/7.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/10.2.3": {
         "type": "package",
         "dependencies": {
@@ -872,6 +885,22 @@
             "related": ".xml"
           }
         }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "RabbitMQ.Client": "7.2.1"
+        },
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -2516,6 +2545,23 @@
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
+    "RabbitMQ.Client/7.2.1": {
+      "sha512": "YKXEfg9fVQiTKgZlvIhAfPSFaamEgi8DsQmisCH0IAsU4FYLrtoguDrDj6JtJVGUt40QPnBLRH6fTQcAC4qsOg==",
+      "type": "package",
+      "path": "rabbitmq.client/7.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/RabbitMQ.Client.dll",
+        "lib/net8.0/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.7.2.1.nupkg.sha512",
+        "rabbitmq.client.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/10.2.3": {
       "sha512": "8KNh1RWvofdU6DVLyBs4Z/OpUMnmf8oNvJQc0QxpwySRbi42bwLfdVMMrXZWANg5U5KQGQq1xW6r/hlcqw99tQ==",
       "type": "package",
@@ -2795,6 +2841,11 @@
         "system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2805,6 +2856,8 @@
       "Microsoft.EntityFrameworkCore >= 9.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.14",
       "Pomelo.EntityFrameworkCore.MySql >= 9.0.0",
+      "RabbitMQ.Client >= 7.2.1",
+      "Shared >= 1.0.0",
       "Swashbuckle.AspNetCore >= 10.2.3"
     ]
   },
@@ -2833,7 +2886,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/user/AssettoCorsaWeb/Backend/Shared/Shared.csproj": {
+              "projectPath": "/home/user/AssettoCorsaWeb/Backend/Shared/Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2877,6 +2934,10 @@
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "RabbitMQ.Client": {
+            "target": "Package",
+            "version": "[7.2.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

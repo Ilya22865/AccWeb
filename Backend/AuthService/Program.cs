@@ -6,6 +6,7 @@ using AuthService.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Shared.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService.Services.AuthService>();
 builder.Services.AddScoped<IEmailValidator, EmailValidator>();
 builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
-builder.Services.AddScoped<IEmailValidator, EmailValidator>();
+builder.Services.AddScoped<IEventPublisher, EventPublisher>();
+
+builder.Services.AddSingleton<RabbitMqConnection>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<RabbitMqConnection>());
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var key = jwtSettings["Key"];
